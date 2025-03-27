@@ -3,9 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Event extends Model
 {
+    use HasFactory;
+    
     protected $guarded = [];
 
     public function user()
@@ -20,6 +23,6 @@ class Event extends Model
 
     public function places()
     {
-        return $this->belongsToMany(Place::class);
+        return $this->belongsToMany(Place::class, 'event_places')->withPivot(['event_date']);
     }
 }

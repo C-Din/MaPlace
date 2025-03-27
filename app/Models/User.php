@@ -60,6 +60,7 @@ class User extends Authenticatable
 
     public function tickets()
     {
-        return $this->belongsToMany(Ticket::class);
+        return $this->belongsToMany(Ticket::class, 'ticket_users')
+                    ->withPivot('quantity', 'total_price', 'is_active', 'payment_date', 'payment_status');
     }
 }
